@@ -18,21 +18,25 @@ class node {
 
 void preorder(node* root){
 
+   if(root==NULL){
+       return;
+   }
   stack <node*> s;
-
-  while(1)
+   node*curr=root;
+  while(!s.empty()||curr!=NULL)
   {
-      while (root)
+      while (curr!=NULL)
       {
           cout<<root->data;
-          s.push(root->data);
-          root=root->left;
+          if(curr->right){
+              s.push(curr->right);
+          }
+          curr=curr->left;
       }
-      if(s.empty()){
-          break;
+      if(s.empty()==false){
+          curr=s.top();
+          s.pop();
       }
-      root=s.pop();
-      root=root->right;
   }
   
 
